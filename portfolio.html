@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Portfolio - Aw tech Digital Agency</title>
+    <meta name="description" content="Explore the portfolio of Aw tech, showcasing web development, mobile app development, UI/UX design, and cloud solution projects.">
+    <meta name="keywords" content="portfolio, projects, web development, mobile development, ui/ux design, Aw tech">
+    <meta name="author" content="Aw tech">
+    <!-- <link rel="canonical" href="https://www.aw.tech/portfolio.html"> Replace with actual production URL -->
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <!-- <meta property="og:url" content="https://www.aw.tech/portfolio.html"> Replace with actual production URL -->
+    <meta property="og:title" content="Portfolio - Aw tech Digital Agency">
+    <meta property="og:description" content="Browse innovative projects by Aw tech.">
+    <!-- <meta property="og:image" content="https://www.aw.tech/og-portfolio-image.png"> Replace with actual OG image URL -->
+    <meta property="og:site_name" content="Aw tech">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- <meta name="twitter:url" content="https://www.aw.tech/portfolio.html"> Replace with actual production URL -->
+    <meta name="twitter:title" content="Portfolio - Aw tech Digital Agency">
+    <meta name="twitter:description" content="Discover the work of Aw tech.">
+    <!-- <meta name="twitter:image" content="https://www.aw.tech/twitter-portfolio-image.png"> Replace with actual Twitter card image URL -->
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Favicon (placeholder) - Ensure consistency with index.html -->
+    <!-- <link rel="icon" type="image/svg+xml" href="images/aw-favicon.svg"> -->
+
+</head>
+<body>
+    <header id="main-header">
+        <div class="container header-container">
+            <a href="index.html#hero" class="logo">Aw tech</a>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="./index.html#hero">Home</a></li>
+                    <li><a href="./index.html#services">Services</a></li>
+                    <li><a href="./index.html#projects">Projects</a></li>
+                    <li><a href="./index.html#team">Team</a></li>
+                   
+                    <li><a href="./index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+           
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <nav id="mobile-nav-menu" class="mobile-nav">
+            <ul>
+                <li><a href="./index.html#hero">Home</a></li>
+                <li><a href="./index.html#services">Services</a></li>
+                <li><a href="./index.html#projects">Projects</a></li>
+                <li><a href="./index.html#team">Team</a></li>
+               
+                <li><a href="./index.html#contact">Contact</a></li>
+            
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="portfolio-gallery" class="section-light-bg">
+            <div class="container">
+                <div class="section-header" style="padding-top: var(--space-8);"> <!-- Adjusted padding for page top -->
+                    <h1>Our Creative Portfolio</h1>
+                    <p class="subtitle-text">
+                        Explore a collection of our finest projects, showcasing our expertise in web development, mobile solutions, and captivating UI/UX design. Each project reflects our commitment to quality and innovation.
+                    </p>
+                </div>
+
+                <div class="filter-buttons portfolio-filter-buttons"> <!-- Added class to distinguish from landing page filters if needed -->
+                    <button class="btn filter-btn active" data-filter="all">All</button>
+                    <button class="btn filter-btn" data-filter="web">Web</button>
+                    <button class="btn filter-btn" data-filter="mobile">Mobile</button>
+                    <button class="btn filter-btn" data-filter="design">Design</button>
+                </div>
+
+                <div class="projects-grid portfolio-projects-grid"> <!-- Added class to distinguish -->
+                    <!-- Project Card 1 (Web) -->
+                    <div class="project-card" data-category="web">
+                        <div class="project-image-wrapper">
+                            <img src="https://placehold.co/600x400/3b82f6/white?text=E-com+Pro" alt="E-commerce Platform Pro">
+                            <div class="project-overlay">
+                                <a href="#" target="_blank" class="btn btn-project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                                <a href="#" target="_blank" class="btn btn-project-link"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-category">Web Development</span>
+                            <h3>E-commerce Platform Pro</h3>
+                            <p>A full-featured online store with Stripe integration and admin dashboard for seamless shopping.</p>
+                        </div>
+                    </div>
+                    <!-- Project Card 2 (Mobile) -->
+                    <div class="project-card" data-category="mobile">
+                        <div class="project-image-wrapper">
+                            <img src="https://placehold.co/600x400/2563eb/white?text=ConnectApp" alt="ConnectApp Task Manager">
+                            <div class="project-overlay">
+                                <a href="#" target="_blank" class="btn btn-project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                                <a href="#" target="_blank" class="btn btn-project-link"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-category">Mobile App</span>
+                            <h3>ConnectApp Task Manager</h3>
+                            <p>Cross-platform mobile app for seamless team collaboration and productivity tracking.</p>
+                        </div>
+                    </div>
+                    <!-- Project Card 3 (Design) -->
+                    <div class="project-card" data-category="design">
+                        <div class="project-image-wrapper">
+                            <img src="https://placehold.co/600x400/1d4ed8/white?text=Artisan+UI" alt="Artisan Portfolio UI/UX">
+                            <div class="project-overlay">
+                                <a href="#" target="_blank" class="btn btn-project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                                <a href="#" target="_blank" class="btn btn-project-link"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-category">UI/UX Design</span>
+                            <h3>Artisan Portfolio UI/UX</h3>
+                            <p>Sleek and visually stunning portfolio design system for creative professionals.</p>
+                        </div>
+                    </div>
+                    <!-- Project Card 4 (Web) -->
+                    <div class="project-card" data-category="web">
+                        <div class="project-image-wrapper">
+                            <img src="https://placehold.co/600x400/1e40af/white?text=Insight+SaaS" alt="Insight SaaS Dashboard">
+                            <div class="project-overlay">
+                                <a href="#" target="_blank" class="btn btn-project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                                <a href="#" target="_blank" class="btn btn-project-link"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-category">Web Development</span>
+                            <h3>Insight SaaS Dashboard</h3>
+                            <p>Powerful analytics and data visualization dashboard for a growing SaaS company.</p>
+                        </div>
+                    </div>
+                    <!-- Project Card 5 (Mobile) -->
+                    <div class="project-card" data-category="mobile">
+                        <div class="project-image-wrapper">
+                            <img src="https://placehold.co/600x400/3b82f6/white?text=FitLife+App" alt="FitLife Mobile Companion">
+                            <div class="project-overlay">
+                                <a href="#" target="_blank" class="btn btn-project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                                <a href="#" target="_blank" class="btn btn-project-link"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-category">Mobile App</span>
+                            <h3>FitLife Mobile Companion</h3>
+                            <p>Intuitive mobile app to track workouts, nutrition, and fitness goals with social sharing.</p>
+                        </div>
+                    </div>
+                    <!-- Project Card 6 (Design) -->
+                    <div class="project-card" data-category="design">
+                        <div class="project-image-wrapper">
+                            <img src="https://placehold.co/600x400/2563eb/white?text=NovaTech+Brand" alt="NovaTech Branding & Identity">
+                            <div class="project-overlay">
+                                <a href="#" target="_blank" class="btn btn-project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                                <a href="#" target="_blank" class="btn btn-project-link"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-category">UI/UX Design</span>
+                            <h3>NovaTech Branding & Identity</h3>
+                            <p>Complete brand identity overhaul and guidelines for an innovative tech startup.</p>
+                        </div>
+                    </div>
+                     <!-- Project Card 7 (Web) -->
+                    <div class="project-card" data-category="web">
+                        <div class="project-image-wrapper">
+                            <img src="https://placehold.co/600x400/1d4ed8/white?text=SkyNet+Cloud" alt="SkyNet Cloud Data Solution">
+                            <div class="project-overlay">
+                                <a href="#" target="_blank" class="btn btn-project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                                <a href="#" target="_blank" class="btn btn-project-link"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-category">Web Development</span>
+                            <h3>SkyNet Cloud Data Solution</h3>
+                            <p>Scalable cloud-based data processing and storage solution for enterprise clients.</p>
+                        </div>
+                    </div>
+                    <!-- Project Card 8 (Mobile) -->
+                    <div class="project-card" data-category="mobile">
+                        <div class="project-image-wrapper">
+                            <img src="https://placehold.co/600x400/1e40af/white?text=Recipe+App" alt="RecipeFinder Mobile App">
+                            <div class="project-overlay">
+                                <a href="#" target="_blank" class="btn btn-project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                                <a href="#" target="_blank" class="btn btn-project-link"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-category">Mobile App</span>
+                            <h3>RecipeFinder Mobile App</h3>
+                            <p>User-friendly app to discover recipes, with ingredient search and meal planning.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="no-projects-message" style="display: none; text-align: center; margin-top: var(--space-8); font-size: 1.1rem; color: var(--text-dark-secondary);">
+                    No projects found for this category.
+                </p>
+            </div>
+        </section>
+
+        <section id="portfolio-cta">
+            <div class="container">
+                <h2>Have a Project in Mind?</h2>
+                <p class="subtitle-text">
+                    Let's turn your vision into reality. We're excited to learn about your ideas and discuss how we can help you achieve your goals.
+                </p>
+                <div class="cta-buttons">
+                    <a href="index.html#contact" class="btn btn-primary btn-hero">
+                        Get in Touch <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="index.html" class="btn btn-outline btn-hero">
+                        <i class="fas fa-home"></i> Back to Home
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column about-us">
+                    <h3 class="footer-heading">Aw tech</h3>
+                    <p>Aw tech is a leading digital agency specializing in creating innovative and impactful web and mobile solutions. We help businesses thrive in the digital landscape.</p>
+                    <div class="social-links">
+                        <a href="https://facebook.com/awtech" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://linkedin.com/company/awtech" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com/awtech" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com/awtech" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://github.com/awtech" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://youtube.com/awtech" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column links-column">
+                    <h3 class="footer-heading">Our Services</h3>
+                    <ul>
+                        <li><a href="index.html#services">Web Development</a></li>
+                        <li><a href="index.html#services">Mobile Development</a></li>
+                        <li><a href="index.html#services">UI/UX Design</a></li>
+                        <li><a href="index.html#services">Cloud Solutions</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column links-column">
+                    <h3 class="footer-heading">Company</h3>
+                    <ul>
+                        <li><a href="index.html#team">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="#">Blog</a></li> <!-- Placeholder -->
+                        <li><a href="#">Careers</a></li> <!-- Placeholder -->
+                    </ul>
+                </div>
+
+                <div class="footer-column contact-info">
+                    <h3 class="footer-heading">Get in Touch</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:contact@awtech.agency">contact@awtech.agency</a></li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+15551234567">+1 (555) 123-4567</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Innovation City, CA 90210</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Aw tech. All rights reserved.</p>
+                <p class="designed-by">Designed with <i class="fas fa-heart" style="color: #e25555;"></i> by Aw tech Team.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Action Button -->
+    <a href="https://wa.me/15551234567?text=Hello%20Aw%20tech!%20I'm%20interested%20in%20your%20services."
+       class="whatsapp-fab"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Main JavaScript File -->
+    <script src="js/main.js"></script>
+</body>
+</html>
