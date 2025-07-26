@@ -1,0 +1,2232 @@
+/* 
+  Main Stylesheet for Aw Tech Static Website
+  
+  Table of Contents:
+  1. Basic Reset/Normalize (Conceptual - will add simple reset)
+  2. Variables
+  3. Global Styles (body, typography, links, buttons, container)
+  4. Header Styles
+  5. Hero Section Styles
+  6. Services Section Styles
+  7. Projects Section Styles
+  8. Team Section Styles
+  9. Statistics Section Styles
+  10. Contact Section Styles
+  11. Footer Styles
+  12. Portfolio Page Styles
+  13. WhatsApp Button Styles
+  14. Utility Classes (if any simple ones are needed)
+  15. Responsive Styles (Media Queries)
+*/
+
+/* 
+  Main Stylesheet for Aw Tech Static Website
+  
+  Table of Contents:
+  1. Basic Reset
+  2. CSS Variables
+  3. Global Styles (body, typography, links, buttons, container)
+  4. Header Styles
+  5. Hero Section Styles
+  ... (other sections)
+*/
+
+/* 1. Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base font size */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.6;
+    color: #333; /* Default dark text for light backgrounds */
+    background-color: #fff; /* Default page background */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: var(--aw-blue-600); /* Default link color */
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--aw-blue-700);
+}
+
+ul, ol {
+    list-style: none;
+}
+
+/* 2. CSS Variables */
+:root {
+    /* Blue Color Scheme (approximating Tailwind's blue palette) */
+    --aw-blue-50:  #eff6ff;
+    --aw-blue-100: #dbeafe;
+    --aw-blue-200: #bfdbfe;
+    --aw-blue-300: #93c5fd;
+    --aw-blue-400: #60a5fa;
+    --aw-blue-500: #3b82f6; /* Main accent */
+    --aw-blue-600: #2563eb; /* Slightly darker accent / links */
+    --aw-blue-700: #1d4ed8; /* Darker blue for text, backgrounds */
+    --aw-blue-800: #1e40af; /* Even darker for deep backgrounds/elements */
+    --aw-blue-900: #1e3a8a;
+    --aw-blue-500-rgb: 59, 130, 246; /* For use in rgba() for focus rings */
+    --aw-blue-50-rgb: 239, 246, 255;  /* RGB for aw-blue-50 - used by filter buttons */
+    --aw-blue-100-rgb: 219, 234, 254; /* RGB for aw-blue-100 - used by filter buttons */
+    /* --aw-blue-200-rgb: 191, 219, 254; /* Was for theme switcher, now unused */
+    /* --aw-blue-300-rgb: 147, 197, 253; /* Was for theme switcher, now unused */
+
+
+    /* Neumorphic Shadow Colors (derived based on a light bg like aw-blue-50) */
+    --shadow-color-light-neumorphic: 255, 255, 255; /* Pure white for light part of shadow */
+    --shadow-color-dark-neumorphic: 203, 213, 225;  /* A desaturated, slightly darker tone of aw-blue-50/100 */
+
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(to bottom right, var(--aw-blue-700), var(--aw-blue-600), var(--aw-blue-800));
+    --gradient-button: linear-gradient(to right, var(--aw-blue-600), var(--aw-blue-700));
+    --gradient-button-hover: linear-gradient(to right, var(--aw-blue-700), var(--aw-blue-800));
+    --gradient-footer: linear-gradient(to right, var(--aw-blue-700), var(--aw-blue-800));
+    --gradient-stats: linear-gradient(to right, var(--aw-blue-700), var(--aw-blue-800));
+    --gradient-light-bg: linear-gradient(to bottom right, var(--aw-blue-50), #e0f2fe, var(--aw-blue-100)); /* Updated #dbeafe to var */
+    
+    /* Text Colors */
+    --text-light: #f8fafc; /* For dark backgrounds */
+    --text-light-secondary: #cbd5e1; /* Muted light text */
+    --text-dark: #1e293b;   /* Default dark text */
+    --text-dark-secondary: #475569; /* Muted dark text */
+
+    /* Background Colors */
+    --bg-light: #ffffff;
+    --bg-soft-blue: var(--aw-blue-50);
+
+    /* Borders */
+    --border-color: #e5e7eb; /* Light gray border */
+    --border-radius-sm: 0.25rem; /* 4px */
+    --border-radius-md: 0.5rem;  /* 8px */
+    --border-radius-lg: 0.75rem; /* 12px */
+    --border-radius-xl: 1rem;   /* 16px */
+    --border-radius-full: 9999px;
+
+    /* Shadows (conceptual, can be refined) */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+    /* Spacing */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
+
+    /* Transitions */
+    --transition-fast: all 0.2s ease-in-out;
+    --transition-std: all 0.3s ease-in-out;
+
+    /* Specific element colors */
+    --heart-color: #e25555; /* Red for footer heart */
+}
+
+
+/* --- Dark Mode Theme Variables --- */
+html[data-theme='dark'] {
+    --aw-blue-50:  #4A5568;  /* chakra.gray.700 */
+    --aw-blue-100: #2D3748;  /* chakra.gray.800 */
+    --aw-blue-200: #718096;  /* chakra.gray.600 - for borders or lighter dark elements */
+    --aw-blue-300: #A0AEC0;  /* chakra.gray.400 - for lighter text/icons on dark */
+    --aw-blue-400: #4299E1;  /* chakra.blue.400 - accent */
+    --aw-blue-500: #3182CE;  /* chakra.blue.500 - main accent */
+    --aw-blue-600: #2B6CB0;  /* chakra.blue.600 - darker accent / links */
+    --aw-blue-700: #2C5282;  /* chakra.blue.700 - even darker */
+    --aw-blue-800: #1A202C;  /* chakra.gray.900 - primary dark bg */
+    --aw-blue-900: #171923;  /* chakra.gray.900 - alternative dark bg */
+    
+    --aw-blue-50-rgb: 45, 55, 72;   /* For rgba(var(--aw-blue-50-rgb), X) */
+    --aw-blue-100-rgb: 26, 32, 44;  /* For rgba(var(--aw-blue-100-rgb), X) */
+    --aw-blue-200-rgb: 113, 128, 150; /* RGB for dark theme's aw-blue-200 */
+    --aw-blue-300-rgb: 160, 174, 192; /* RGB for dark theme's aw-blue-300 */
+
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(to bottom right, var(--aw-blue-700), var(--aw-blue-800), var(--aw-blue-900));
+    --gradient-button: linear-gradient(to right, var(--aw-blue-500), var(--aw-blue-600));
+    --gradient-button-hover: linear-gradient(to right, var(--aw-blue-600), var(--aw-blue-700));
+    --gradient-footer: linear-gradient(to right, var(--aw-blue-800), var(--aw-blue-900));
+    --gradient-stats: linear-gradient(to right, var(--aw-blue-700), var(--aw-blue-800));
+    --gradient-light-bg: linear-gradient(to bottom right, var(--aw-blue-100), #1A202C); /* Darker subtle gradient */
+    
+    /* Text Colors */
+    --text-light: #F7FAFC;   /* chakra.gray.100 */
+    --text-light-secondary: #A0AEC0; /* chakra.gray.400 */
+    --text-dark: #EDF2F7;    /* chakra.gray.200 - default light text on dark bg */
+    --text-dark-secondary: #CBD5E0; /* chakra.gray.300 - muted light text */
+
+    /* Background Colors */
+    --bg-light: #1A202C;     /* chakra.gray.900 - Main page background */
+    --bg-soft-blue: #2D3748; /* chakra.gray.800 - Secondary background (cards, etc.) */
+
+    /* Borders */
+    --border-color: #4A5568; /* chakra.gray.700 - for borders */
+    
+    /* Shadows (need to be light on dark backgrounds) */
+    /* For neumorphism, light source is still top-left, so light shadow is lighter than bg, dark shadow is darker */
+    /* This is tricky on dark themes. Often neumorphism is avoided or highly adapted. */
+    /* For standard shadows, they become highlights or very subtle dark depressions. */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.15); /* Darker shadow */
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -4px rgba(0, 0, 0, 0.2);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.25);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+
+    /* Neumorphic Shadow Colors for Dark Theme (relative to --aw-blue-100 background for filter buttons) */
+    /* --aw-blue-100 is #2D3748. Light shadow needs to be lighter, dark shadow darker. */
+    --shadow-color-light-neumorphic: 74, 85, 104;  /* chakra.gray.600 (lightened #4A5568) for filter buttons */
+    --shadow-color-dark-neumorphic: 10, 12, 18;    /* Darker than #1A202C for filter buttons */
+
+    /* Specific Dark Mode Adjustments for elements */
+    --hero-highlight-gradient-dark: linear-gradient(to right, var(--aw-blue-300), var(--aw-blue-400)); /* Brighter blue gradient for hero text */
+    --card-border-dark: 1px solid var(--aw-blue-200); 
+    --project-category-text-dark: var(--aw-blue-300); /* Lighter text for category badges */
+    --link-color-dark: var(--aw-blue-400); /* Brighter default link color */
+    --link-hover-color-dark: var(--aw-blue-300); /* Lighter hover for links */
+
+    /* Filter button specific overrides for dark mode */
+    --filter-btn-bg-dark: rgba(var(--shadow-color-light-neumorphic), 0.08); /* Lighter base for button */
+    --filter-btn-border-dark: rgba(var(--shadow-color-light-neumorphic), 0.3);
+    --filter-btn-text-dark: var(--aw-blue-300);
+    --filter-btn-hover-bg-dark: rgba(var(--shadow-color-light-neumorphic), 0.12);
+    --filter-btn-active-bg-dark: rgba(var(--shadow-color-light-neumorphic), 0.05);
+    --filter-btn-active-text-dark: var(--aw-blue-200);
+}
+
+/* --- Eye Care (Sepia/Warm) Theme Variables --- */
+html[data-theme='eyecare'] {
+    /* Apply a global filter for a base eye-care effect */
+    /* filter: sepia(0.25) contrast(0.9) brightness(0.95) saturate(0.8); */
+    /* Individual variable overrides provide more control */
+
+    --aw-blue-50:  #fdf6e3;  /* Solarized base03 (light) */
+    --aw-blue-100: #f5efdB;  /* Lighter cream */
+    --aw-blue-200: #eee8d5;  /* Solarized base02 (light) */
+    --aw-blue-300: #93a1a1;  /* Solarized base0 (muted) */
+    --aw-blue-400: #859900;  /* Solarized green (warmer accent) */
+    --aw-blue-500: #b58900;  /* Solarized yellow (main warm accent) */
+    --aw-blue-600: #cb4b16;  /* Solarized orange (links/accents) */
+    --aw-blue-700: #dc322f;  /* Solarized red (stronger accent) */
+    --aw-blue-800: #586e75;  /* Solarized base01 (darker text/bg elements) */
+    --aw-blue-900: #073642;  /* Solarized base002 (very dark elements, if needed) */
+
+    --aw-blue-50-rgb: 253, 246, 227;
+    --aw-blue-100-rgb: 245, 239, 219;
+    --aw-blue-200-rgb: 238, 232, 213; /* RGB for eyecare theme's aw-blue-200 */
+    --aw-blue-300-rgb: 147, 161, 161; /* RGB for eyecare theme's aw-blue-300 */
+    --aw-blue-500-rgb: 181, 137, 0; /* Solarized yellow for focus rings */
+
+
+    /* Gradients - make them warmer */
+    --gradient-hero: linear-gradient(to bottom right, var(--aw-blue-800), #657b83, var(--aw-blue-900)); /* Darker, muted */
+    --gradient-button: linear-gradient(to right, var(--aw-blue-500), var(--aw-blue-600));
+    --gradient-button-hover: linear-gradient(to right, var(--aw-blue-600), var(--aw-blue-700));
+    --gradient-footer: linear-gradient(to right, var(--aw-blue-800), var(--aw-blue-900));
+    --gradient-stats: linear-gradient(to right, var(--aw-blue-800), #657b83);
+    --gradient-light-bg: linear-gradient(to bottom right, var(--aw-blue-50), var(--aw-blue-100));
+    
+    /* Text Colors */
+    --text-light: #fdf6e3;   /* Light text for dark backgrounds (if any) */
+    --text-light-secondary: #eee8d5; 
+    --text-dark: #586e75;    /* Solarized base01 - main text color */
+    --text-dark-secondary: #839496; /* Solarized base1 - muted text */
+
+    /* Background Colors */
+    --bg-light: #fdf6e3;     /* Solarized base3 - main page background (cream) */
+    --bg-soft-blue: #f5efdB; /* Lighter cream for cards */
+
+    /* Borders */
+    --border-color: #eee8d5; /* Solarized base2 */
+    
+    /* Shadows (need to be adjusted for creamy background) */
+    --shadow-sm: 0 1px 2px 0 rgba(88, 110, 117, 0.1); /* Softer, brownish shadows */
+    --shadow-md: 0 4px 6px -1px rgba(88, 110, 117, 0.15), 0 2px 4px -2px rgba(88, 110, 117, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(88, 110, 117, 0.15), 0 4px 6px -4px rgba(88, 110, 117, 0.15);
+    --shadow-xl: 0 20px 25px -5px rgba(88, 110, 117, 0.2), 0 8px 10px -6px rgba(88, 110, 117, 0.2);
+    --shadow-2xl: 0 25px 50px -12px rgba(88, 110, 117, 0.3);
+
+    /* Neumorphic Shadow Colors for Eye Care (relative to --aw-blue-50 / #fdf6e3) */
+    --shadow-color-light-neumorphic: 255, 255, 255; /* Still white for highlight */
+    --shadow-color-dark-neumorphic: 200, 190, 160;  /* A darker, slightly desaturated cream/brown */
+}
+
+
+/* 3. Global Styles */
+body {
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    position: relative; /* Needed if a child overlay is to not cause scroll issues with body itself */
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--aw-blue-800); /* Default heading color */
+    margin-bottom: var(--space-4);
+}
+
+h1 { font-size: 2.5rem; } /* ~40px */
+h2 { font-size: 2rem; }   /* ~32px */
+h3 { font-size: 1.5rem; } /* ~24px */
+h4 { font-size: 1.25rem; }/* ~20px */
+p {
+    margin-bottom: var(--space-4);
+    color: var(--text-dark-secondary);
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1200px; /* Max width for larger screens */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+}
+
+/* Basic Button Styling (can be extended with classes like .btn-primary, .btn-outline) */
+.btn {
+    display: inline-block;
+    padding: var(--space-2) var(--space-6);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: var(--transition-std);
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background-image: var(--gradient-button);
+    color: var(--text-light);
+    border-color: var(--aw-blue-700);
+}
+.btn-primary:hover {
+    background-image: var(--gradient-button-hover);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--aw-blue-600);
+    border: 2px solid var(--aw-blue-500);
+}
+.btn-outline:hover {
+    background-color: var(--aw-blue-500);
+    color: var(--text-light);
+    transform: scale(1.05);
+}
+
+/* Section Padding */
+section {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+}
+/* Adjust for smaller screens */
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.375rem; }
+    section {
+        padding-top: var(--space-12);
+        padding-bottom: var(--space-12);
+    }
+}
+
+
+/* Placeholder for other sections */
+
+/* Theme-specific overrides for components */
+
+/* Dark Mode Component Adjustments */
+html[data-theme='dark'] a { /* Apply new link colors */
+    color: var(--link-color-dark);
+}
+html[data-theme='dark'] a:hover {
+    color: var(--link-hover-color-dark);
+}
+
+html[data-theme='dark'] .service-card,
+html[data-theme='dark'] .project-card,
+html[data-theme='dark'] .team-card {
+    border: var(--card-border-dark);
+    background-color: var(--bg-soft-blue); /* Ensure cards use the dark theme soft blue */
+}
+
+html[data-theme='dark'] #hero h1 .highlight-text {
+    background: var(--hero-highlight-gradient-dark);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+html[data-theme='dark'] .project-category {
+    color: var(--project-category-text-dark);
+    background-color: var(--aw-blue-100); /* This is dark theme's aw-blue-100 (#2D3748) */
+}
+
+html[data-theme='dark'] .filter-btn { /* Overriding general filter button for dark mode */
+    background-color: var(--filter-btn-bg-dark);
+    border-color: var(--filter-btn-border-dark);
+    color: var(--filter-btn-text-dark);
+     /* Neumorphic shadows need to be relative to the new button background and section background */
+    box-shadow: 
+        -3px -3px 6px rgba(var(--shadow-color-light-neumorphic), 0.1), /* Lighter part of shadow */
+        3px 3px 6px rgba(var(--shadow-color-dark-neumorphic), 0.5);   /* Darker part of shadow */
+}
+html[data-theme='dark'] .filter-btn:hover {
+    background-color: var(--filter-btn-hover-bg-dark);
+    color: var(--link-hover-color-dark); /* Brighter text on hover */
+     box-shadow: 
+        -4px -4px 8px rgba(var(--shadow-color-light-neumorphic), 0.12), 
+        4px 4px 8px rgba(var(--shadow-color-dark-neumorphic), 0.6);
+}
+html[data-theme='dark'] .filter-btn.active {
+    background-color: var(--filter-btn-active-bg-dark);
+    color: var(--filter-btn-active-text-dark);
+    box-shadow: 
+        inset 2px 2px 4px rgba(var(--shadow-color-dark-neumorphic), 0.5), 
+        inset -2px -2px 4px rgba(var(--shadow-color-light-neumorphic), 0.08);
+    border-color: rgba(var(--shadow-color-dark-neumorphic), 0.3);
+}
+html[data-theme='dark'] .filter-btn.active:hover {
+    background-color: rgba(var(--shadow-color-light-neumorphic), 0.07);
+     box-shadow: 
+        inset 2px 2px 5px rgba(var(--shadow-color-dark-neumorphic), 0.6), 
+        inset -2px -2px 5px rgba(var(--shadow-color-light-neumorphic), 0.1);
+}
+
+
+html[data-theme='dark'] .contact-form-wrapper::before { /* Adjust gradient border for dark form */
+    background: linear-gradient(120deg, var(--aw-blue-400), var(--aw-blue-600), var(--aw-blue-400));
+    opacity: 0.5;
+}
+html[data-theme='dark'] .form-group input[type="text"],
+html[data-theme='dark'] .form-group input[type="email"],
+html[data-theme='dark'] .form-group select,
+html[data-theme='dark'] .form-group textarea {
+    border-color: var(--aw-blue-200); /* Dark theme's aw-blue-200 */
+    background-color: var(--aw-blue-50);/* Dark theme's aw-blue-50 */
+    color: var(--text-dark); /* Dark theme's text-dark (light gray) */
+}
+html[data-theme='dark'] .form-group input[type="text"]::placeholder,
+html[data-theme='dark'] .form-group input[type="email"]::placeholder,
+html[data-theme='dark'] .form-group textarea::placeholder {
+    color: var(--aw-blue-300); /* Dark theme's aw-blue-300 */
+    opacity: 0.7;
+}
+html[data-theme='dark'] .form-group:focus-within label {
+    color: var(--aw-blue-400); /* Dark theme's accent */
+}
+html[data-theme='dark'] .form-group select {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23A0AEC0%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22/%3E%3C/svg%3E'); /* Arrow color: --aw-blue-300 (dark theme) */
+}
+
+
+/* Eye Care Mode Component Adjustments */
+html[data-theme='eyecare'] body { /* Apply global filter if chosen over granular vars for some aspects */
+    /* filter: sepia(0.25) contrast(0.9) brightness(0.95); */
+}
+
+html[data-theme='eyecare'] .service-card,
+html[data-theme='eyecare'] .project-card,
+html[data-theme='eyecare'] .team-card {
+    background-color: var(--aw-blue-100); /* eyecare: #f5efdB */
+    border: 1px solid var(--aw-blue-200);   /* eyecare: #eee8d5 */
+}
+
+html[data-theme='eyecare'] #hero h1 .highlight-text {
+    background: linear-gradient(to right, var(--aw-blue-400), var(--aw-blue-500)); /* Warmer gradient */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+html[data-theme='eyecare'] .contact-form-wrapper::before { /* Adjust gradient border for eyecare form */
+    background: linear-gradient(120deg, var(--aw-blue-400), var(--aw-blue-600), var(--aw-blue-400)); /* Using eyecare accents */
+    opacity: 0.6;
+}
+html[data-theme='eyecare'] .form-group input[type="text"],
+html[data-theme='eyecare'] .form-group input[type="email"],
+html[data-theme='eyecare'] .form-group select,
+html[data-theme='eyecare'] .form-group textarea {
+    background-color: var(--aw-blue-100); /* eyecare: #f5efdB - for better distinction */
+    border-color: var(--aw-blue-200);   /* eyecare: #eee8d5 */
+}
+html[data-theme='eyecare'] .form-group input[type="text"]::placeholder,
+html[data-theme='eyecare'] .form-group input[type="email"]::placeholder,
+html[data-theme='eyecare'] .form-group textarea::placeholder {
+    color: var(--aw-blue-300); /* eyecare: #93a1a1 */
+    opacity: 0.8;
+}
+html[data-theme='eyecare'] .form-group select {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23cb4b16%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22/%3E%3C/svg%3E'); /* Arrow color: --aw-blue-600 (eyecare theme - orange) */
+}
+
+
+/* Theme Switcher UI Styles (within Header) - REMOVED */
+
+/* Mobile Menu Overlay/Scrim */
+#menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent black */
+    z-index: 1050; /* Below menu (1100), above page content and header (1000) */
+    opacity: 0;
+    visibility: hidden; /* Hidden and not interactive initially */
+    transition: opacity 0.35s ease-in-out, visibility 0.35s ease-in-out;
+}
+
+#menu-overlay.overlay-visible {
+    opacity: 1;
+    visibility: visible; /* Make it visible and interactive */
+}
+
+/* 13. WhatsApp Button Styles */
+.whatsapp-fab {
+    position: fixed;
+    bottom: var(--space-6);
+    right: var(--space-6);
+    z-index: 999; /* Below header (1000) but above most content */
+    background: linear-gradient(135deg, #25D366, #128C7E); /* WhatsApp green gradient */
+    color: var(--text-light);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition-std);
+    text-decoration: none; /* Ensure no underline if it's an anchor */
+}
+
+.whatsapp-fab i {
+    font-size: 1.75rem; /* Icon size */
+}
+
+.whatsapp-fab:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: var(--shadow-xl);
+    background: linear-gradient(135deg, #128C7E, #075E54); /* Darker green on hover */
+}
+
+/* Responsive adjustments for WhatsApp FAB */
+@media (max-width: 768px) {
+    .whatsapp-fab {
+        width: 50px;
+        height: 50px;
+        bottom: var(--space-4);
+        right: var(--space-4);
+    }
+    .whatsapp-fab i {
+        font-size: 1.5rem;
+    }
+}
+
+/* 12. Portfolio Page Styles */
+#portfolio-gallery .section-header h1 { /* Target h1 specifically on portfolio page */
+    color: var(--aw-blue-700); /* Darker blue for page title */
+    font-size: 2.75rem; /* Slightly larger for page title */
+    margin-bottom: var(--space-3);
+}
+
+#portfolio-gallery .section-header .subtitle-text {
+    font-size: 1.15rem;
+    max-width: 800px; /* Wider subtitle for page intro */
+}
+
+
+
+#portfolio-cta {
+    background-image: var(--gradient-hero); /* Reuse hero gradient */
+    color: var(--text-light);
+    text-align: center;
+    padding: var(--space-12) 0; /* Less vertical padding than full sections */
+}
+
+#portfolio-cta h2 {
+    color: var(--text-light);
+    font-size: 2.25rem; /* Slightly smaller than main section titles */
+    margin-bottom: var(--space-4);
+}
+
+#portfolio-cta .subtitle-text { /* Subtitle within this CTA */
+    color: var(--text-light-secondary);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: var(--space-8);
+}
+
+#portfolio-cta .cta-buttons .btn-hero i.fa-home { /* Specific for home icon */
+    margin-right: var(--space-2);
+    margin-left: 0; /* Reset margin if it was only on right */
+}
+#portfolio-cta .cta-buttons .btn-hero:hover i.fa-home {
+    transform: rotate(-5deg) translateX(0); /* Keep rotation, remove translateX */
+}
+
+
+/* Responsive adjustments for Portfolio Page */
+@media (max-width: 768px) {
+    #portfolio-gallery .section-header h1 {
+        font-size: 2.25rem;
+    }
+    #portfolio-cta h2 {
+        font-size: 1.75rem;
+    }
+}
+
+.contact-form-wrapper {
+    max-width: 700px; /* Slightly reduced max-width for a tighter look */
+    margin: 0 auto var(--space-10) auto; /* Center form and add bottom margin */
+    background-color: var(--bg-light);
+    padding: var(--space-8) var(--space-10); /* Increased padding for more internal space */
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-2xl); /* Enhanced shadow */
+    position: relative; /* For pseudo-elements like gradient border */
+    overflow: hidden; /* If using pseudo-elements for border */
+}
+
+/* Subtle animated gradient border effect */
+.contact-form-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    z-index: -1; /* Place it behind the content */
+    margin: -2px; /* Negative margin to make it appear as a border */
+    border-radius: inherit; /* Inherit border-radius from parent */
+    background: linear-gradient(120deg, var(--aw-blue-400), var(--aw-blue-600), var(--aw-blue-400));
+    background-size: 200% 200%;
+    animation: gradientBorderAnimation 8s ease infinite;
+    opacity: 0.7; /* Make it subtle */
+}
+
+@keyframes gradientBorderAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+#contact-form .form-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default to 1 column */
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+}
+
+@media (min-width: 768px) { /* 2 columns for wider screens */
+    #contact-form .form-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.form-group {
+    margin-bottom: var(--space-6); /* Spacing between form groups (for service, message) */
+}
+#contact-form .form-grid .form-group {
+    margin-bottom: 0; /* No bottom margin for items within the grid */
+}
+
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: var(--space-2);
+    font-size: 0.9rem;
+    transition: color 0.3s ease; /* For label color change on focus */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select, /* Base styles for select will be consistent here */
+.form-group textarea {
+    width: 100%;
+    padding: var(--space-4) var(--space-4); /* Increased vertical padding from --space-3 to --space-4 */
+    border: 1px solid var(--aw-blue-200); /* Softer default border, e.g., #bfdbfe */
+    border-radius: var(--border-radius-lg); /* Slightly more rounded, e.g., 0.75rem */
+    font-size: 1rem;
+    color: var(--text-dark); /* Main text color for input */
+    background-color: var(--aw-blue-50); /* Very subtle blue tint background, e.g., #eff6ff */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    position: relative; 
+}
+/* Override placeholder color for better contrast on light bg if needed, or for styling */
+.form-group input[type="text"]::placeholder,
+.form-group input[type="email"]::placeholder,
+.form-group textarea::placeholder {
+    color: var(--aw-blue-400); /* Lighter blue for placeholder */
+    opacity: 0.8; /* Ensure it's not too faint */
+}
+
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--aw-blue-600); /* Stronger border color on focus */
+    box-shadow: 0 0 0 3px rgba(var(--aw-blue-500-rgb), 0.4); /* More visible ring */
+    background-color: var(--bg-light); /* Keep bg light on focus */
+}
+
+/* Change label color when the associated input is focused */
+.form-group input[type="text"]:focus + label, /* This won't work as label is before input */
+.form-group input[type="email"]:focus + label,
+.form-group select:focus + label,
+.form-group textarea:focus + label,
+/* Using :focus-within on the parent .form-group to style the label */
+.form-group:focus-within label {
+    color: var(--aw-blue-600);
+    font-weight: 600;
+}
+
+
+.form-group select {
+    appearance: none; /* Remove default select arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* Updated SVG with fill color var(--aw-blue-600) which is #2563eb. URL encoded: %232563eb */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232563eb%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22/%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right var(--space-4) center; /* Adjusted position slightly */
+    background-size: 0.7em auto; /* Slightly larger arrow */
+    padding-right: var(--space-10); /* More padding for larger arrow and better spacing */
+}
+/* Ensure select text doesn't overlap with the arrow */
+.form-group select {
+    /* The padding-right above should handle this. If text is still too long and overlaps,
+       we might need to ensure the select itself truncates text, but that's usually browser default. */
+}
+
+
+.form-group textarea {
+    resize: vertical; /* Allow vertical resize only */
+    min-height: 120px;
+}
+
+.form-group.form-submit-group {
+    text-align: center;
+    margin-top: var(--space-8); /* Add top margin to submit button group */
+    margin-bottom: 0; /* No bottom margin for submit group */
+}
+
+.btn-submit-form {
+    min-width: 220px; /* Good size for submit button */
+    padding: var(--space-4) var(--space-8);
+    font-size: 1.1rem;
+    position: relative; /* For custom effects like shimmer */
+    overflow: hidden; /* For shimmer */
+}
+
+.btn-submit-form::before { /* Shimmer effect */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Start off-screen */
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: left 0.8s ease; /* Slower transition for shimmer */
+}
+
+.btn-submit-form:hover::before {
+    left: 150%; /* Move across the button */
+}
+
+
+.btn-submit-form i {
+    margin-left: var(--space-2);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* More dynamic easing */
+}
+.btn-submit-form:hover i {
+    transform: translateX(6px) rotate(-15deg) scale(1.1);
+}
+.btn-submit-form:active {
+    transform: scale(0.98); /* Slight press down effect */
+    box-shadow: var(--shadow-md);
+}
+
+
+.contact-socials {
+    text-align: center;
+    margin-top: var(--space-8);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--border-color);
+}
+.contact-socials p {
+    color: var(--text-dark-secondary);
+    margin-bottom: var(--space-4);
+    font-size: 0.9rem;
+}
+.social-links-contact-page { 
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-4); /* Slightly increased gap for better spacing of colored boxes */
+}
+.social-links-contact-page a {
+    font-size: 1.3rem; /* Icon size */
+    transition: var(--transition-std);
+    width: 50px; 
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+    color: white; /* Default icon color to white as backgrounds will be brand colors */
+    border: 1px solid transparent; /* Transparent border by default, can be colored by brand */
+}
+
+/* Default Brand Background Colors & Borders */
+.social-links-contact-page a[aria-label*="LinkedIn"] { background-color: #0077b5; border-color: #005e8e;}
+.social-links-contact-page a[aria-label*="Twitter"]  { background-color: #1DA1F2; border-color: #0c84d1;}
+.social-links-contact-page a[aria-label*="Facebook"] { background-color: #1877F2; border-color: #125cb0;}
+.social-links-contact-page a[aria-label*="Instagram"]{ background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); border-color:transparent;}
+.social-links-contact-page a[aria-label*="Tiktok"]   { background-color: #160311; border-color: #410505;}
+.social-links-contact-page a[aria-label*="WhatsApp"] { background-color: #25D366; border-color: #1db954;}
+
+
+/* Hover Effects for Brand-Colored Boxes */
+.social-links-contact-page a:hover {
+    transform: translateY(-4px) scale(1.08); /* Slightly more pronounced lift and scale */
+    box-shadow: var(--shadow-xl); 
+    filter: brightness(0.92); /* General darken effect on hover */
+    color: white; /* Ensure icon remains white on hover */
+}
+
+/* Specific hover adjustments if brightness filter isn't ideal for all or for more control */
+.social-links-contact-page a[aria-label*="Instagram"]:hover {
+    filter: brightness(1.08); /* Instagram might look better slightly brighter or with a different border */
+    box-shadow: 0 0 15px rgba(220, 39, 67, 0.5); /* Glow effect for instagram */
+}
+.social-links-contact-page a[aria-label*="GitHub"]:hover {
+    background-color: #24292e; /* Official GitHub hover color is often darker or same */
+    border-color: #1b1f23;
+    filter: none; /* Remove general brightness if specific color is set */
+}
+.social-links-contact-page a[aria-label*="WhatsApp"]:hover {
+    background-color: #1FAF54; 
+    border-color: #128C40;
+    filter: none;
+}
+
+
+/* 9. Statistics Section Styles */
+#statistics {
+    background-image: var(--gradient-stats); /* Using the defined gradient */
+    color: var(--text-light); /* Light text for dark background */
+    text-align: center;
+}
+
+#statistics .section-header h2 {
+    color: var(--text-light); /* Override default heading color for dark bg */
+}
+/* .subtitle-text is already defined globally, but we added a .text-light-secondary class in HTML for this section */
+.text-light-secondary { /* Helper class for lighter text on dark backgrounds */
+    color: var(--text-light-secondary) !important; /* Ensure it overrides */
+}
+
+
+.statistics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-6); /* Smaller gap for stat items */
+}
+
+.stat-item {
+    /* Glassmorphism attempt - subtle */
+    background-color: rgba(255, 255, 255, 0.08); /* Very subtle white */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: var(--space-6) var(--space-4);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Softer shadow on dark bg */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.stat-icon-wrapper { /* Reusing service-icon-wrapper idea but for stats */
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-4) auto;
+    box-shadow: var(--shadow-sm); /* Subtle shadow for the icon bg */
+}
+.stat-icon-wrapper i {
+    font-size: 2.25rem; /* ~36px */
+}
+
+/* Icon background and color specifics */
+.stat-icon-wrapper.icon-bg-blue { background-color: var(--aw-blue-100); }
+.stat-icon-wrapper.icon-bg-blue i { color: var(--aw-blue-600); }
+
+.stat-icon-wrapper.icon-bg-sky { background-color: #cffafe; } /* Tailwind sky-100 */
+.stat-icon-wrapper.icon-bg-sky i { color: #0ea5e9; } /* Tailwind sky-500 */
+
+.stat-icon-wrapper.icon-bg-indigo { background-color: #e0e7ff; } /* Tailwind indigo-100 */
+.stat-icon-wrapper.icon-bg-indigo i { color: #6366f1; } /* Tailwind indigo-500 */
+
+.stat-icon-wrapper.icon-bg-purple { background-color: #f3e8ff; } /* Tailwind purple-100 */
+.stat-icon-wrapper.icon-bg-purple i { color: #a855f7; } /* Tailwind purple-500 */
+
+
+.stat-value {
+    font-size: 2.5rem; /* ~40px */
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: var(--space-1);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    color: var(--text-light-secondary);
+    margin-bottom: 0;
+}
+
+/* Responsive adjustments for Statistics */
+@media (max-width: 992px) { /* Medium screens */
+    .statistics-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Allow slightly wider items */
+        gap: var(--space-4);
+    }
+}
+
+@media (max-width: 768px) { /* Small screens */
+    .statistics-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    .stat-value {
+        font-size: 2rem;
+    }
+    .stat-icon-wrapper {
+        width: 70px;
+        height: 70px;
+    }
+    .stat-icon-wrapper i {
+        font-size: 2rem;
+    }
+.btn-hero {
+    padding: var(--space-4) var(--space-8); 
+   
+}
+}
+@media (max-width: 576px) { /* Extra Small screens */
+    .statistics-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for very small screens */
+    }
+     .stat-item {
+        padding: var(--space-4);
+    }
+}
+
+/* 8. Team Section Styles */
+#team {
+    background-color: var(--bg-light); /* White background */
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: var(--space-8);
+}
+
+.team-card {
+    background-color: var(--aw-blue-50); /* Light blue tint, similar to service cards */
+    border-radius: var(--border-radius-xl);
+    padding: var(--space-6);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-std);
+    border: 1px solid transparent; /* For potential hover border */
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    /* border-color: var(--aw-blue-300); */
+}
+
+.team-image-wrapper {
+    width: 150px; /* Size of the image circle */
+    height: 150px;
+    border-radius: 50%; /* Circular image */
+    overflow: hidden; /* Clip image to circle */
+    margin: 0 auto var(--space-6) auto; /* Center image and add bottom margin */
+    border: 4px solid var(--bg-light); /* White border around image */
+    box-shadow: var(--shadow-md);
+    position: relative; /* For potential hover effects on image if needed */
+    transition: border-color 0.3s ease;
+}
+.team-card:hover .team-image-wrapper {
+    border-color: var(--aw-blue-300);
+}
+
+.team-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure image covers the circle */
+}
+
+.team-content h3 {
+    font-size: 1.375rem; /* ~22px */
+    color: var(--aw-blue-700);
+    margin-bottom: var(--space-1);
+}
+
+.team-content .team-role {
+    font-size: 0.9rem;
+    color: var(--aw-blue-600);
+    font-weight: 500;
+    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.team-content .team-bio {
+    font-size: 0.875rem; /* ~14px */
+    color: var(--text-dark-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-4);
+    /* For limiting lines if desired: */
+    /* height: 4.8em; /* approx 3 lines if line-height is 1.6 */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+    /* display: -webkit-box; */
+    /* -webkit-line-clamp: 3; */
+    /* -webkit-box-orient: vertical; */
+}
+
+.team-skills {
+    margin-bottom: var(--space-4);
+}
+.team-skills span {
+    display: inline-block;
+    background-color: var(--aw-blue-100);
+    color: var(--aw-blue-700);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--border-radius-full);
+    font-size: 0.75rem; /* ~12px */
+    font-weight: 500;
+    margin: var(--space-1) calc(var(--space-1) / 2);
+}
+
+
+.team-social-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+}
+
+.team-social-links a {
+    color: var(--text-dark-secondary);
+    font-size: 1.2rem; /* Icon size */
+    transition: var(--transition-fast);
+}
+
+.team-social-links a:hover {
+    transform: scale(1.2);
+    /* Specific hover colors can be added for each social icon if needed */
+}
+.team-social-links a[aria-label*="LinkedIn"]:hover { color: #0077b5; }
+.team-social-links a[aria-label*="Twitter"]:hover { color: #1DA1F2; }
+.team-social-links a[aria-label*="GitHub"]:hover { color: #333; }
+
+
+/* Responsive adjustments for Team */
+@media (max-width: 992px) { /* Medium screens */
+    .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+@media (max-width: 576px) { /* Small screens */
+    .team-grid {
+        grid-template-columns: 1fr; /* Stack fully on very small screens */
+    }
+    .team-image-wrapper {
+        width: 120px;
+        height: 120px;
+    }
+    .team-content h3 {
+        font-size: 1.25rem;
+    }
+}
+
+/* General Section Light Background Styling (if not already global) */
+.section-light-bg {
+    background-color: var(--aw-blue-50); /* Or use a light gradient: var(--gradient-light-bg); */
+    /* Consider a very subtle pattern or texture if desired, but keep it clean */
+}
+
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-4); /* Increased gap from --space-3 */
+    margin-bottom: var(--space-10);
+}
+
+.filter-btn {
+    padding: var(--space-3) var(--space-6); /* Increased padding for a slightly larger button */
+    font-size: 0.95rem; /* Slightly larger font */
+    font-weight: 600; /* Bolder font */
+    color: var(--aw-blue-700); /* Darker text for better contrast on light neumorphic bg */
+    
+    background-color: rgba(var(--aw-blue-50-rgb), 0.6); /* Base color from section bg, semi-transparent */
+    backdrop-filter: blur(5px); /* Glassmorphism blur */
+    -webkit-backdrop-filter: blur(5px);
+    
+    border-radius: var(--border-radius-lg); /* Softer rectangle, no longer full pill */
+    border: 1px solid rgba(var(--shadow-color-light-neumorphic), 0.6); /* Light border */
+    
+    /* Neumorphic shadows relative to aw-blue-50 background */
+    /* Light shadow from top-left, Dark shadow from bottom-right */
+    box-shadow: 
+        -4px -4px 8px rgba(var(--shadow-color-light-neumorphic), 0.7), 
+        4px 4px 8px rgba(var(--shadow-color-dark-neumorphic), 0.3);
+    
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    outline: none; /* Remove default browser outline */
+}
+
+.filter-btn:hover {
+    background-color: rgba(var(--aw-blue-100-rgb), 0.7); /* Slightly more opaque or different tint */
+    border-color: rgba(var(--shadow-color-light-neumorphic), 0.8); /* Brighter border */
+    transform: translateY(-2px); /* Slight lift */
+    /* Adjust shadows to give a bit more pop or a slightly pressed-in feel if desired */
+    box-shadow: 
+        -5px -5px 10px rgba(var(--shadow-color-light-neumorphic), 0.75), 
+        5px 5px 10px rgba(var(--shadow-color-dark-neumorphic), 0.35);
+    color: var(--aw-blue-800); /* Slightly darker text on hover */
+}
+
+.filter-btn.active {
+    /* Pressed-in Neumorphic Look */
+    background-color: rgba(var(--aw-blue-50-rgb), 0.4); /* Slightly more 'recessed' background */
+    /* Invert shadows or use inset - for simplicity, let's try stronger inset-like effect */
+    box-shadow: 
+        inset 2px 2px 5px rgba(var(--shadow-color-dark-neumorphic), 0.3), 
+        inset -2px -2px 5px rgba(var(--shadow-color-light-neumorphic), 0.6);
+    color: var(--aw-blue-600); /* Emphasized text color */
+    transform: translateY(1px); /* Subtle press down effect */
+    /* border-color: rgba(var(--shadow-color-dark-neumorphic), 0.2); /* Optional: darker border for inset look */
+    /* Remove previous gradient and stronger border for active state */
+    background-image: none; 
+}
+.filter-btn.active:hover { /* Keep hover distinct from just active */
+    background-color: rgba(var(--aw-blue-50-rgb), 0.5);
+     box-shadow: 
+        inset 3px 3px 6px rgba(var(--shadow-color-dark-neumorphic), 0.35), 
+        inset -3px -3px 6px rgba(var(--shadow-color-light-neumorphic), 0.65);
+    transform: translateY(0px); /* Slightly less pressed on hover-active */
+}
+
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-8);
+}
+
+.project-card {
+    background-color: var(--bg-light);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden; /* Important for image zoom effect and rounded corners */
+    transition: var(--transition-std);
+    display: flex; /* For managing hidden state in JS */
+    flex-direction: column;
+}
+.project-card.hidden {
+    display: none;
+}
+
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-2xl);
+}
+
+.project-image-wrapper {
+    position: relative;
+    width: 100%;
+    /* aspect-ratio: 16 / 10; Maintain aspect ratio for images */
+    padding-top: 62.5%; /* 16:10 aspect ratio (10/16 * 100) */
+    overflow: hidden; /* Crucial for image zoom effect */
+}
+
+.project-image-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the area, might crop */
+    transition: transform 0.5s ease-in-out;
+}
+
+.project-card:hover .project-image-wrapper img {
+    transform: scale(1.1); /* Zoom effect */
+}
+
+.project-overlay {
+    position: absolute;
+    inset: 0; /* Cover entire wrapper */
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%);
+    display: flex;
+    flex-direction: column; /* Stack items if needed, or use row for buttons */
+    align-items: center;
+    justify-content: flex-end; /* Position buttons at the bottom */
+    padding: var(--space-4);
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-overlay .btn-project-link {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--aw-blue-700);
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.85rem;
+    border-radius: var(--border-radius-md);
+    margin: 0 var(--space-1); /* Spacing between buttons */
+    box-shadow: var(--shadow-sm);
+    transform: translateY(20px); /* Initial position for slide-in */
+    transition: transform 0.3s ease-out, background-color 0.3s ease, color 0.3s ease;
+}
+.project-card:hover .project-overlay .btn-project-link {
+    transform: translateY(0);
+}
+.project-card .project-overlay .btn-project-link:nth-child(2) {
+    transition-delay: 0.1s; /* Stagger animation */
+}
+
+
+.project-overlay .btn-project-link:hover {
+    background-color: var(--bg-light);
+    box-shadow: var(--shadow-md);
+}
+.project-overlay .btn-project-link i {
+    margin-right: var(--space-1);
+}
+
+.project-content {
+    padding: var(--space-6);
+    flex-grow: 1; /* Allows content to take up space if card height varies */
+    display: flex;
+    flex-direction: column;
+}
+
+.project-category {
+    display: inline-block;
+    background-color: var(--aw-blue-100);
+    color: var(--aw-blue-700);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--border-radius-full);
+    font-size: 0.75rem; /* ~12px */
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+    align-self: flex-start; /* Align to start of flex container */
+    text-transform: capitalize;
+}
+
+.project-content h3 {
+    font-size: 1.25rem; /* ~20px */
+    color: var(--text-dark); /* Override global heading if needed */
+    margin-bottom: var(--space-2);
+    transition: color 0.3s ease;
+}
+.project-card:hover .project-content h3 {
+    color: var(--aw-blue-600);
+}
+
+.project-content p {
+    font-size: 0.9rem;
+    color: var(--text-dark-secondary);
+    line-height: 1.5;
+    margin-bottom: 0; /* Remove default p margin if it's the last item */
+    /* For line clamping (optional, if supported and needed) */
+    /* display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; */
+    flex-grow: 1; /* Allows paragraph to take available space */
+}
+
+.view-all-projects {
+    text-align: center;
+    margin-top: var(--space-10);
+}
+.view-all-projects .btn i {
+    margin-left: var(--space-2);
+    transition: transform 0.3s ease;
+}
+.view-all-projects .btn:hover i {
+    transform: translateX(5px);
+}
+
+
+/* Responsive adjustments for Projects */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr; /* Stack cards */
+    }
+    .project-content h3 {
+        font-size: 1.15rem;
+    }
+    .project-content p {
+        font-size: 0.85rem;
+    }
+}
+
+/* 6. Services Section Styles */
+#services {
+    background-color: var(--bg-light); /* White background */
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+}
+
+.section-header .subtitle-text { /* Shared class for section subtitles */
+    font-size: 1.1rem;
+    color: var(--text-dark-secondary);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: var(--space-8);
+}
+
+.service-card {
+    background-color: var(--aw-blue-50); /* Light blue tint */
+    padding: var(--space-8) var(--space-6);
+    border-radius: var(--border-radius-xl);
+    text-align: left; /* Align text to left within card */
+    box-shadow: var(--shadow-md);
+    border: 2px solid transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-xl);
+    /* border-color: var(--aw-blue-500); /* Example border color on hover */
+}
+
+.service-icon-wrapper {
+    display: inline-flex; /* To keep it inline but allow padding/bg */
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+    border-radius: var(--border-radius-lg);
+    margin-bottom: var(--space-6);
+    background-color: var(--bg-light); /* White background for icon circle */
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease;
+}
+.service-card:hover .service-icon-wrapper {
+    transform: scale(1.1);
+}
+
+.service-icon-wrapper i { /* Font Awesome icon styling */
+    font-size: 2.5rem; /* Icon size */
+}
+
+/* Specific icon colors and hover border colors per card */
+.service-icon-wrapper.bg-blue i { color: var(--aw-blue-600); }
+.service-card.card-blue:hover { border-color: var(--aw-blue-500); } /* Add this class to card div if needed */
+
+
+.service-icon-wrapper.bg-sky i { color: #0ea5e9; } /* Tailwind sky-600 */
+.service-card.card-sky:hover { border-color: #0ea5e9; }
+
+.service-icon-wrapper.bg-indigo i { color: #6366f1; } /* Tailwind indigo-600 */
+.service-card.card-indigo:hover { border-color: #6366f1; }
+
+.service-icon-wrapper.bg-purple i { color: #a855f7; } /* Tailwind purple-600 */
+.service-card.card-purple:hover { border-color: #a855f7; }
+
+
+.service-card h3 {
+    font-size: 1.375rem; /* ~22px */
+    margin-bottom: var(--space-3);
+    color: var(--aw-blue-700); /* Heading color in card */
+    transition: color 0.3s ease;
+}
+.service-card:hover h3 {
+    color: var(--aw-blue-600);
+}
+
+.service-card p {
+    font-size: 0.95rem;
+    color: var(--text-dark-secondary);
+    line-height: 1.6;
+    margin-bottom: 0; /* No margin for last element in card */
+}
+
+/* Responsive adjustments for Services */
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr; /* Stack cards on smaller screens */
+    }
+    .service-card {
+        padding: var(--space-6);
+        text-align: center; /* Center content in card on mobile */
+    }
+    .service-icon-wrapper {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+.hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+           background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .tech-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            grid-template-rows: repeat(10, 1fr);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .grid-cell {
+            border: 1px solid rgba(79, 109, 245, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .grid-cell:hover {
+            background: rgba(79, 109, 245, 0.1);
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(79, 109, 245, 0.1);
+            border: 1px solid rgba(79, 109, 245, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #4f6df5;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            animation: float 8s infinite ease-in-out;
+            transition: all 0.3s ease;
+        }
+
+        .floating-element:hover {
+            transform: scale(1.1);
+            background: rgba(79, 109, 245, 0.2);
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 65%;
+            left: 15%;
+            animation-delay: -2s;
+        }
+
+        .floating-element:nth-child(3) {
+            top: 40%;
+            right: 10%;
+            animation-delay: -4s;
+        }
+
+        .floating-element:nth-child(4) {
+            top: 75%;
+            right: 20%;
+            animation-delay: -6s;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #f1f5f9, #4f6df5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            color: #cbd5e1;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-button {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, #4f6df5, #6c8bff);
+            color: white;
+            box-shadow: 0 4px 15px rgba(79, 109, 245, 0.4);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(79, 109, 245, 0.6);
+        }
+
+        .outline-btn {
+            background: transparent;
+            border: 2px solid #4f6df5;
+            color: #4f6df5;
+        }
+
+        .outline-btn:hover {
+            background: rgba(79, 109, 245, 0.1);
+        }
+
+        .stats-container {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #4f6df5, #8a9eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-visuals {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            height: 500px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .visual-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            max-width: 400px;
+            perspective: 1000px;
+        }
+
+        .cube {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 100px auto;
+            transform-style: preserve-3d;
+            animation: rotate 20s infinite linear;
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(79, 109, 245, 0.1);
+            border: 2px solid rgba(79, 109, 245, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #4f6df5;
+            backdrop-filter: blur(5px);
+        }
+
+        .cube-face:nth-child(1) { transform: translateZ(100px); }
+        .cube-face:nth-child(2) { transform: rotateY(180deg) translateZ(100px); }
+        .cube-face:nth-child(3) { transform: rotateY(90deg) translateZ(100px); }
+        .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(100px); }
+        .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(100px); }
+        .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(100px); }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotateX(0) rotateY(0) rotateZ(0); }
+            100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-content {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 1rem;
+                text-align: center;
+            }
+            
+            .hero-text {
+                text-align: center;
+                padding: 1rem;
+            }
+            
+            .hero-text p {
+                margin: 0 auto 2rem;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .stats-container {
+                justify-content: center;
+            }
+            
+            .hero-visuals {
+                height: 400px;
+            }
+            
+            .floating-element {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .hero-visuals {
+                height: 300px;
+            }
+            
+            .cube {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .cube-face {
+                width: 150px;
+                height: 150px;
+                font-size: 30px;
+            }
+            
+            .cube-face:nth-child(1) { transform: translateZ(75px); }
+            .cube-face:nth-child(2) { transform: rotateY(180deg) translateZ(75px); }
+            .cube-face:nth-child(3) { transform: rotateY(90deg) translateZ(75px); }
+            .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(75px); }
+            .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(75px); }
+            .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(75px); }
+        }
+
+
+
+/* 11. Footer Styles */
+#main-footer {
+    background-image: var(--gradient-footer);
+    color: var(--text-light-secondary);
+    padding: var(--space-12) 0 var(--space-6) 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+}
+
+.footer-column h3.footer-heading {
+    font-size: 1.25rem; /* ~20px */
+    color: var(--text-light);
+    margin-bottom: var(--space-4);
+    font-weight: 600;
+}
+
+.footer-column p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text-light-secondary); /* Consistent with footer text */
+    margin-bottom: var(--space-4); /* For paragraphs in about-us */
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: var(--space-2);
+}
+
+.footer-column ul li a {
+    color: var(--text-light-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.footer-column ul li a:hover {
+    color: var(--aw-blue-200); /* Lighter blue for hover on dark bg */
+    padding-left: var(--space-1);
+}
+
+.footer-column.contact-info ul li {
+    display: flex;
+    align-items: flex-start; /* Align icon with first line of text */
+}
+
+.footer-column.contact-info ul li i {
+    margin-right: var(--space-2);
+    margin-top: 0.25em; /* Align icon better with text */
+    color: var(--aw-blue-300); /* Icon color */
+    width: 16px; /* Ensure consistent icon spacing */
+    text-align: center;
+}
+
+
+.social-links {
+    margin-top: var(--space-4);
+}
+
+.social-links a {
+    display: inline-block;
+    color: var(--text-light-secondary);
+    font-size: 1.25rem; /* Icon size */
+    margin-right: var(--space-4);
+    transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+    width: 40px; /* Define fixed size for background effect */
+    height: 40px;
+    display: inline-flex; /* Use flex to center icon */
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Circular background */
+    position: relative;
+    overflow: hidden; /* For potential advanced effects */
+}
+
+.social-links a::before { /* Pseudo-element for background hover effect */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--aw-blue-500); /* Example: Use a blue shade */
+    transform: scale(0);
+    transition: transform 0.3s ease-out;
+    z-index: -1; /* Behind the icon */
+    opacity: 0.2;
+}
+
+
+.social-links a:hover::before {
+    transform: scale(1);
+}
+
+.social-links a:hover {
+    color: var(--aw-blue-200); /* Ensure icon color contrasts with bg */
+    transform: translateY(-3px) scale(1.05); /* Slight lift and scale */
+    /* The main icon color change will be handled by specific :hover states below if needed */
+}
+/* Keep specific brand color hovers for the icon itself, if desired, or make them all uniform */
+/* Example:
+.social-links a[aria-label*="Facebook"]:hover { color: #1877F2; }
+.social-links a[aria-label*="LinkedIn"]:hover { color: #0077b5; }
+*/
+
+
+.footer-bottom {
+    text-align: center;
+    padding-top: var(--space-6);
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    font-size: 0.85rem;
+}
+.footer-bottom p {
+    margin-bottom: var(--space-1);
+    color: var(--text-light-secondary); /* Ensure this is set */
+}
+.footer-bottom .designed-by {
+    font-size: 0.8rem;
+    color: var(--aw-blue-200);
+}
+.footer-bottom .designed-by i {
+    color: var(--heart-color);
+    transition: transform 0.3s ease;
+}
+.footer-bottom .designed-by:hover i {
+    transform: scale(1.2);
+}
+
+
+/* Responsive adjustments for Footer */
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr; /* Stack columns on smaller screens */
+        text-align: center;
+    }
+    .footer-column {
+        margin-bottom: var(--space-6);
+    }
+    .footer-column:last-child {
+        margin-bottom: 0;
+    }
+    .social-links {
+        justify-content: center;
+        display: flex; /* To center icons if needed */
+    }
+    .footer-column.contact-info ul li {
+        justify-content: center; /* Center contact items if text-align center is on column */
+        padding-left: 0; /* Reset padding if any from desktop */
+    }
+    .footer-column.contact-info ul li i {
+        margin-top: 0.2em; /* Adjust if needed for centering */
+    }
+}
+/* Sections 4-15 will be populated in subsequent steps */
+
+/* 4. Header Styles */
+#main-header {
+    background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: var(--space-4) 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure header is above other content */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#main-header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-md);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.75rem; /* ~28px */
+    font-weight: 700;
+    color: var(--aw-blue-600);
+    text-decoration: none;
+}
+.logo:hover {
+    color: var(--aw-blue-700);
+}
+
+.desktop-nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.desktop-nav ul li {
+    margin-left: var(--space-6);
+}
+
+.desktop-nav ul li a {
+    text-decoration: none;
+    color: var(--text-dark-secondary);
+    font-weight: 500;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--border-radius-sm);
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.desktop-nav ul li a:hover,
+.desktop-nav ul li a.active { /* Class for active link if implemented via JS */
+    color: var(--aw-blue-600);
+    /* background-color: var(--aw-blue-50); */
+}
+
+.btn-header-quote {
+    padding: var(--space-2) var(--space-4); /* Slightly smaller padding for header button */
+    font-size: 0.9rem;
+}
+
+.mobile-menu-toggle {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    color: var(--aw-blue-700);
+    font-size: 1.5rem; /* Hamburger icon size */
+    cursor: pointer;
+}
+
+/* Off-Canvas Mobile Menu Core Styles */
+#mobile-nav-menu { /* Changed from .mobile-nav to target ID for specificity */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px; /* Standard width for off-canvas menus */
+    max-width: 80%; /* Ensure it doesn't take full width on very small screens */
+    height: 100vh;
+    background-color: var(--aw-blue-800); /* Dark blue background */
+    color: var(--text-light);
+    box-shadow: var(--shadow-xl); /* Shadow on the right edge */
+    padding: var(--space-8) var(--space-6); /* Generous padding */
+    z-index: 1100; /* Above overlay (1050) and header (1000) */
+    
+    transform: translateX(-100%); /* Initially off-screen to the left */
+    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth slide animation */
+    
+    display: flex; /* Use flex to structure content inside, e.g., header, nav, footer */
+    flex-direction: column;
+    overflow-y: auto; /* Allow scrolling if content exceeds height */
+}
+
+#mobile-nav-menu.open {
+    transform: translateX(0); /* Slide into view */
+}
+
+/* Styles for ul within the new off-canvas menu */
+#mobile-nav-menu .mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: var(--space-4);
+    margin-bottom: var(--space-4);
+    border-bottom: 1px solid rgba(var(--aw-blue-500-rgb), 0.3); /* Subtle separator */
+}
+
+#mobile-nav-menu .menu-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--aw-blue-300); /* Lighter blue for title */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#mobile-nav-menu .close-menu-btn {
+    background: none;
+    border: none;
+    color: var(--aw-blue-300);
+    font-size: 1.5rem; /* X icon size */
+    cursor: pointer;
+    padding: var(--space-1); /* Make clickable area slightly larger */
+    line-height: 1; /* Ensure icon is centered */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+#mobile-nav-menu .close-menu-btn:hover {
+    color: var(--text-light);
+    transform: rotate(90deg);
+}
+
+
+#mobile-nav-menu ul {
+    list-style: none;
+    padding: 0; /* Padding handled by main menu or li a */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Links take full width */
+    flex-grow: 1; /* Allow ul to take available space if menu is flex-column */
+}
+
+#mobile-nav-menu ul li { /* Changed from .mobile-nav to #mobile-nav-menu */
+    width: 100%;
+    text-align: left; 
+    margin-bottom: var(--space-10); /* Increased margin for more spacing */
+}
+#mobile-nav-menu ul li:last-child { /* Last item is often the button, ensure it has margin if needed or specific styling */
+    margin-bottom: 0; 
+}
+
+#mobile-nav-menu ul li a { /* Changed from .mobile-nav to #mobile-nav-menu */
+    display: flex; /* For aligning icon and text */
+    align-items: center;
+    padding: var(--space-3) var(--space-4); /* Increased horizontal padding */
+    text-decoration: none;
+    color: var(--aw-blue-200); 
+    font-weight: 500;
+    font-size: 1.05rem; /* Slightly adjusted font size */
+    border-radius: var(--border-radius-lg); /* More rounded */
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative; /* For potential advanced effects like underline animation */
+}
+
+#mobile-nav-menu ul li a i.fas,
+#mobile-nav-menu ul li a i.fab { /* Target Font Awesome icons */
+    margin-right: var(--space-6); /* Space between icon and text */
+    font-size: 1em; /* Make icon size relative to link font size */
+    width: 20px; /* Ensure consistent width for al ignment */
+    text-align: center;
+    opacity: 0.8;
+    transition: opacity 0.25s ease;
+}
+
+#mobile-nav-menu ul li a:hover,
+#mobile-nav-menu ul li a:focus { 
+    background-color: rgba(var(--aw-blue-500-rgb), 0.2); /* Slightly stronger hover/focus bg */
+    color: var(--text-light); 
+    transform: translateX(5px); /* Slight slide right */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+    outline: none;
+}
+#mobile-nav-menu ul li a:hover i.fas,
+#mobile-nav-menu ul li a:hover i.fab {
+    opacity: 1;
+}
+
+
+/* Staggered Link Animation within Mobile Menu */
+#mobile-nav-menu ul li { /* This also applies to the li containing the button */
+    opacity: 0;
+    transform: translateX(-30px);
+    /* Transition for li opacity/transform is defined here */
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out; 
+}
+/* Ensure the .btn-mobile-quote itself (which is an <a> tag) doesn't get double transform transition if li has it */
+#mobile-nav-menu ul li .btn-mobile-quote {
+    transition: background-image var(--transition-std), transform var(--transition-std), box-shadow var(--transition-std); /* From .btn styles */
+}
+
+
+#mobile-nav-menu.open ul li {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Applying individual delays - can be done up to a reasonable number of items */
+/* These delays apply to the LI elements */
+#mobile-nav-menu.open ul li:nth-child(1) { transition-delay: 0.12s; } /* Start slightly later */
+#mobile-nav-menu.open ul li:nth-child(2) { transition-delay: 0.18s; }
+#mobile-nav-menu.open ul li:nth-child(3) { transition-delay: 0.24s; }
+#mobile-nav-menu.open ul li:nth-child(4) { transition-delay: 0.30s; }
+#mobile-nav-menu.open ul li:nth-child(5) { transition-delay: 0.36s; }
+#mobile-nav-menu.open ul li:nth-child(6) { transition-delay: 0.42s; }
+#mobile-nav-menu.open ul li:nth-child(7) { /* For the Get a Quote button li */
+    transition-delay: 0.48s; 
+}
+/* Adjust delay for the theme switcher if it becomes the 7th item */
+#mobile-nav-menu.open ul li.mobile-theme-switcher-li { /* If it's the 7th item */
+    transition-delay: 0.48s; 
+}
+#mobile-nav-menu.open ul li:last-child { /* If Get a Quote is last and theme switcher is before it */
+    transition-delay: 0.54s; 
+}
+
+
+#mobile-nav-menu .btn-mobile-quote { 
+    margin-top: auto; /* Push to bottom if #mobile-nav-menu is flex-column and ul has flex-grow:1 */
+    padding-top: var(--space-6); /* Space above the button */
+    width: 100%; 
+    max-width: none; /* Allow full width */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Responsive adjustments for Header */
+@media (max-width: 992px) { /* Tablet and Mobile */
+    .desktop-nav {
+        display: none;
+    }
+    .btn-header-quote.desktop-only {
+        display: none;
+    }
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+
+/* Ensure main content is not hidden by fixed header */
+body {
+    padding-top: 80px; /* Adjust based on actual header height, ~var(--space-16) + padding */
+}
+
